@@ -2,7 +2,7 @@
 # https://blog.gtwang.org/web-development/chrome-configuration-for-access-control-allow-origin/
 
 import json
-from flask import Flask, request, abort, send_file, render_template,url_for
+from flask import Flask, request, abort, send_file, render_template, url_for
 from datetime import datetime,timedelta
 from dbhelper import DbHelper
 from myquery import MyRequest
@@ -76,7 +76,7 @@ def favicon():
 @app.route('/sample/',defaults={'req_path': ''})
 @app.route('/sample/<path:req_path>')
 def index(req_path):
-    BASE_DIR = 'C:/Users/purem/Desktop/stock_tracking_system/project'
+    BASE_DIR = '../stock_tracking_system/project'
 
     print(req_path)
 
@@ -474,10 +474,13 @@ def allowed_gai_family():
 
 urllib3_cn.allowed_gai_family = allowed_gai_family
 
+
+
+
 # app.add_url_rule('/favicon.ico',redirect_to=url_for('static', filename='favicon.ico'))
 
-# if __name__ == "__main__":
-#     app.run(host='220.133.234.2', port=443, ssl_context=('C:\\SSL_TOOL\\secret\\certificate.crt', 'C:\\SSL_TOOL\\secret\\private.key'))
+if __name__ == "__main__":
+    app.run(host='220.133.234.2', port=443, ssl_context=('C:\\SSL_TOOL\\secret\\certificate.crt', 'C:\\SSL_TOOL\\secret\\private.key'))
 
 # print(CheckCurrentMonthData('20220326'))
 

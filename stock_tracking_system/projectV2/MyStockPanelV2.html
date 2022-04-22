@@ -1,0 +1,97 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>股價追蹤面板</title>
+    <!-- 禁止縮放畫面 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .row {
+            width: 100%;
+            border: none;
+            margin-bottom: 30px;
+        }
+
+        .left-panel {
+            width: 100%;
+            margin: 10px;
+        }
+
+        .right-panel {
+            width: 100%;
+            margin: 10px;
+        }
+
+        .lb {
+            display: block;
+        }
+
+        .condition {
+            display: block;
+        }
+
+        .finger {
+            min-width: 60px;
+            min-height: 60px;
+        }
+
+        .setting-panel {
+            margin: 10px;
+        }
+
+        @media screen and (min-width:768px) {
+            .row {
+                display: flex;
+                border: black;
+                border-style: double;
+            }
+
+            .group {
+                margin: 30px;
+                padding: 10px;
+            }
+
+            .left-panel {
+                margin: 10px;
+            }
+
+            .right-panel {
+                margin: 10px;
+            }
+
+            .setting-panel {
+                margin: 0px 30px 0px 30px;
+                padding: 0px 10px 0px 10px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="pages" class="group">
+    </div>
+
+    <div class="setting-panel">
+        <button class="finger" onclick="AddNewPage()">新增頁面</button>
+    </div>
+
+    <script src="page.js"></script>
+
+    <script>
+        
+    </script>
+</body>
+
+</html>

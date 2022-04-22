@@ -4,7 +4,7 @@
 from http import server
 from tornado.httpserver import HTTPServer
 from tornado.wsgi import WSGIContainer
-from myapi import app
+import app
 from tornado.ioloop import IOLoop
 import ssl
 
@@ -16,8 +16,14 @@ ssl_ctx.load_cert_chain('C:\\SSL_TOOL\\secret\\certificate.crt',
 
 
 
-s = HTTPServer(WSGIContainer(app),ssl_options=ssl_ctx)
+a = HTTPServer(WSGIContainer(app.app))
+
+s = HTTPServer(a,ssl_options=ssl_ctx)
+
+
+# a.bind(5000,"0.0.0.0")
 s.listen(443) 
+
+
+
 IOLoop.current().start()
-
-
