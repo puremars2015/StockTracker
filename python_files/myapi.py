@@ -65,12 +65,12 @@ def ReadThreeBigByMonth(date):
 
 @app.route('/')
 def hello_world():
-    return '<h1>Welcome to Theta Information !</h1>'
+    return '<h1>Service is online!</h1>'
 
-@app.route('/favicon.ico/')
-def favicon():
+# @app.route('/favicon.ico/')
+# def favicon():
     
-    return
+#     return
     
 
 @app.route('/sample/',defaults={'req_path': ''})
@@ -480,7 +480,7 @@ urllib3_cn.allowed_gai_family = allowed_gai_family
 # app.add_url_rule('/favicon.ico',redirect_to=url_for('static', filename='favicon.ico'))
 
 if __name__ == "__main__":
-    app.run(host='220.133.234.2', port=443, ssl_context=('C:\\SSL_TOOL\\secret\\certificate.crt', 'C:\\SSL_TOOL\\secret\\private.key'))
+    app.run(host='0.0.0.0', port=443, ssl_context=('C:\\SSL_TOOL\\secret\\certificate.crt', 'C:\\SSL_TOOL\\secret\\private.key'))
 
 # print(CheckCurrentMonthData('20220326'))
 

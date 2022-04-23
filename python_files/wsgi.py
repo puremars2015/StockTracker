@@ -1,2 +1,0 @@
-
-from myapp import app
