@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>股價追蹤面板</title>
+    <!-- 禁止縮放畫面 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div.base {
+            display: flex;
+            /* 水平置中 */
+            justify-content: center;
+            /* 垂直置中 */
+            align-items: center;
+        }
+        div.title {
+            text-align:center;
+            margin: 20px;
+        }
+        div.account {
+            margin: 5px;
+        }
+        div.password {
+            margin: 5px;
+        }
+        div.warnning-message {
+            display: none;
+            text-align:center;
+            color: red;
+        }
+        div.control {
+            text-align:center;
+            margin: 30px 0px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="base">
+
+        <div class="primary">
+            <div class="title">
+                <h1>股價追蹤面板</h1>
+            </div>
+            <div class="account">
+                <label>帳號：</label>
+                <input type="text">
+            </div>
+            <div class="password">
+                <label>密碼：</label>
+                <input type="text">
+            </div>
+            <div class="warnning-message">
+                <h3>登入帳號或密碼錯誤</h3>
+            </div>
+            <div class="control">
+                <input type="button" value="登入" style="width:30%">
+                <input type="button" value="註冊" style="width:30%" onclick="goto('register.html')">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goto(v) {
+            window.location.href = v;
+        }
+    </script>
+
+</body>
+
+</html>
