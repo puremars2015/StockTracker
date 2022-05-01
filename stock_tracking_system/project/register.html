@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>股價追蹤面板</title>
+    <title>股價追蹤系統</title>
     <!-- 禁止縮放畫面 -->
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -44,6 +44,10 @@
             text-align:center;
             margin: 30px 0px;
         }
+        .input-area {
+            margin-top: 1px;
+            float: right;
+        }
     </style>
 </head>
 
@@ -55,20 +59,20 @@
                 <h1>股價追蹤面板</h1>
             </div>
             <div class="invitation">
-                <label>邀請碼：</label>
-                <input type="text">
+                <label class="description">邀請碼：</label>
+                <input class="input-area" type="text">
             </div>
             <div class="account">
-                <label>帳號：</label>
-                <input type="text">
+                <label class="description">帳號：</label>
+                <input class="input-area" type="text">
             </div>
             <div class="password">
-                <label>密碼：</label>
-                <input type="text">
+                <label class="description">密碼：</label>
+                <input class="input-area" type="password">
             </div>
             <div class="password">
-                <label>確認密碼：</label>
-                <input type="text">
+                <label class="description">確認密碼：</label>
+                <input class="input-area" type="password">
             </div>
             <div class="warnning-message">
                 <h3>邀請碼錯誤</h3>
