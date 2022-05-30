@@ -5,10 +5,9 @@
     <title>價格追蹤系統</title>
     <!-- 禁止縮放畫面 -->
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -93,14 +92,9 @@
     </div>
 
 
-    <!-- MainChart.js -->
+    <!-- page.js -->
     <script>
         class MainChart {
-
-            QueryCondition;
-
-            subChart;
-
             constructor(no) {
                 this.no = no;
                 this.BASE_API_URL = "https://localhost/";
@@ -190,17 +184,6 @@
                     return;
                 }
 
-                // axios({
-                //     method:'post',
-                //     url: self.BASE_API_URL + "stockInfoV2",
-                //     data: JSON.stringify({
-                //         time: condition.qinterval,
-                //         stockCode: condition.scode,
-                //         fromDate: condition.fromDate,
-                //         toDate: condition.toDate
-                //     })
-                // })
-
                 $.ajax({
                     url: self.BASE_API_URL + "stockInfoV2",
                     data: JSON.stringify({
@@ -216,6 +199,7 @@
 
                         localStorage.setItem(condition.scode, JSON.stringify(returnData));
                         self.myChart.data.stockCode = condition.scode;
+
                         self.Draw(returnData, new Number(condition.mosiac));
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
@@ -255,6 +239,49 @@
                 self.myChart.data.labels = dt.map(x => x.time);
                 self.myChart.data.datasets[0].data = dt.map(x => x.price);
 
+                // let maxp;
+                // let minp;
+
+                // for (let i = 0; i < self.myChart.data.datasets[0].data.length; i++) {
+
+                //     let current = self.myChart.data.datasets[0].data[i];
+
+                //     if (i == 0) {
+                //         maxp = current;
+                //         minp = current;
+                //     }
+
+                //     if (current > maxp) {
+                //         maxp = current;
+                //     }
+
+
+                //     if (current < minp) {
+                //         minp = current;
+                //     }
+
+                // }
+
+                // // X軸刻度數
+                // let xp = self.myChart.data.labels.length;
+                // // Y軸刻度數
+                // let yp = ((maxp - minp) / mosiac + 1)
+                // // Y軸需要增加的刻度數
+                // let ypplus = xp - yp;
+
+                // let p = parseInt(ypplus / 2);
+
+                // if (maxp != minp) {
+                //     if (ypplus % 2 == 0) {
+                //         self.myChart.config.options.scales.y.max = maxp + p * mosiac;
+                //         self.myChart.config.options.scales.y.min = minp - p * mosiac;
+                //     }
+                //     else {
+                //         self.myChart.config.options.scales.y.max = maxp + p * mosiac;
+                //         self.myChart.config.options.scales.y.min = minp - (p + 1) * mosiac;
+                //     }
+                // }
+
                 self.myChart.config.options.plugins.title.text = stockData.title;
                 self.myChart.config.options.scales.y.ticks.stepSize = mosiac;
                 self.myChart.update();
@@ -276,12 +303,9 @@
         }
     </script>
 
-    <!-- SubChart.js -->
+    <!-- sub_page.js -->
     <script>
         class SubChart {
-
-            QueryCondition;
-
             constructor(no) {
                 this.no = no;
                 this.BASE_API_URL = "https://localhost/";
@@ -355,7 +379,41 @@
 
                 let data = JSON.parse(localStorage.getItem(condition.scode));
 
-                self.Draw(data, startTime, endTime);
+                self.Draw(data,startTime, endTime);
+
+                // let scode = condition.scode;
+                // let qinterval = condition.qinterval;
+                // let mosiac = 1;
+
+
+                // if (!scode || !qinterval) {
+                //     alert("請輸入完整查詢資訊!");
+                //     return;
+                // }
+
+
+                // $.ajax({
+                //     url: self.BASE_API_URL + "stockInfoV2",
+                //     data: JSON.stringify({
+                //         time: qinterval,
+                //         stockCode: scode,
+                        
+                //     }),
+                //     type: "POST",
+                //     dataType: "json",
+                //     contentType: "application/json;charset=utf-8",
+                //     success: function (returnData) {
+
+                //         localStorage.setItem(scode, JSON.stringify(returnData));
+                //         self.myChart.data.stockCode = scode;
+
+                //         self.Draw(returnData, mosiac, startTime, endTime);
+                //     },
+                //     error: function (xhr, ajaxOptions, thrownError) {
+                //         console.log(xhr.status);
+                //         console.log(thrownError);
+                //     }
+                // });
 
                 self.QueryCondition = condition;
             }
@@ -377,6 +435,23 @@
                 self.myChart.config.options.plugins.title.text = stockData.title;
                 self.myChart.update();
             }
+
+
+            // Draw(stockData, mosiac, startTime, endTime) {
+            //     let self = this;
+            //     let dt;
+            //     if (endTime) {
+            //         dt = stockData.map(x => { return { time: x.Date, price: x.Close - x.Close % mosiac } }).filter(x => x.time >= startTime && x.time < endTime);
+            //     }
+            //     else {
+            //         // 沒有endtime表示是最後一點
+            //         dt = stockData.map(x => { return { time: x.Date, price: x.Close - x.Close % mosiac } }).filter(x => x.time >= startTime);
+            //     }
+            //     self.myChart.data.labels = dt.map(x => x.time);
+            //     self.myChart.data.datasets[0].data = dt.map(x => x.price);
+            //     self.myChart.config.options.plugins.title.text = stockData.title;
+            //     self.myChart.update();
+            // }
 
             Distinct(dt) {
                 let distinct = [];

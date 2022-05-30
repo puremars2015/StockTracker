@@ -1,18 +1,35 @@
 
-import json
-from flask import Flask, request, abort, send_file, render_template, url_for
-from datetime import datetime,timedelta
-from dbhelper import DbHelper
-from myquery import MyRequest
 
 
-import socket
-import requests.packages.urllib3.util.connection as urllib3_cn
-
-from flask_cors import CORS
-
-import os
+s = 'abcabcbb'
 
 
+arr1 = []
+i = 0
+j = 0
+max = 0
+
+while i < len(s):
+
+    if s[i] not in arr1:
+        arr1.append(s[i])
+        i += 1
+        if max < i - j:
+            max = i - j
+    else:
+        if max < i - j:
+            max = i - j
+        arr1.reverse()
+        arr1.pop()
+        j += 1
+        i = j + len(arr1)
+
+print(max)
 
 
+# arr1 = [1,2,3]
+
+# arr1.reverse()
+# arr1.pop()
+
+# print(arr1)
