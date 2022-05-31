@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>價格追蹤系統</title>
+    <!-- 禁止縮放畫面 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .monitor {
+            display: flex;
+            width: 100%;
+            height: 100%
+        }
+
+        .side-bar {
+            /* border-style: dashed; */
+            padding-top: 30px;
+            padding-left: 10px;
+            padding-right: 30px;
+            width: 10%;
+        }
+
+        .button-row {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .link-button {
+            width: 100%;
+        }
+
+        .primary-container {
+            width: 90%;
+            height: 100%;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="monitor">
+        <div class="side-bar">
+            <div class="button-row">
+                <button class="link-button">價格追蹤功能面板</button>
+            </div>
+            <div class="button-row">
+                <button class="link-button">設定新邀請碼</button>
+            </div>
+            <div class="button-row">
+                <button class="link-button">登出</button>
+            </div>
+        </div>
+        <div class="primary-container">
+            <iframe id="primary-container" class="container" src="/monitor"></iframe>
+        </div>
+    </div>
+
+</body>
+
+</html>

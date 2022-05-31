@@ -2,7 +2,7 @@
 # https://blog.gtwang.org/web-development/chrome-configuration-for-access-control-allow-origin/
 
 
-from flask import Flask, request, abort, send_file, render_template, url_for
+from flask import Flask, redirect, request, abort, send_file, render_template, url_for,send_from_directory
 from datetime import datetime,timedelta
 from myquery import MyRequest
 import json
@@ -18,20 +18,30 @@ CORS(app)
 
 @app.route('/')
 def hello_world():
+    # return redirect('/login')
     return '<h1>Service is online!</h1>'
 
-@app.route('/sample/',defaults={'req_path': ''})
-@app.route('/sample/<path:req_path>')
-def index(req_path):
-    BASE_DIR = 'stock_tracking_system\\project'
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path),'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-    print(req_path)
+# 登入畫面
+@app.route('/login/',defaults={'req_path': ''}, methods=['GET'])
+@app.route('/login/<path:req_path>', methods=['GET'])
+def login(req_path):
+    BASE_DIR = 'server_v3\\templates'
+
+    print('req_path:',req_path)
 
     if not req_path:
-        req_path = 'index.html'
+        req_path = 'login'
+
+    req_path = f"{req_path}.html"
 
     abs_path = os.path.join(os.getcwd(),BASE_DIR)
     abs_path = os.path.join(abs_path, req_path)
+
+    print('abs_path:',abs_path)
 
     # Return 404 if path doesn't exist
     if not os.path.exists(abs_path):
@@ -39,11 +49,72 @@ def index(req_path):
 
     # Check if path is a file and serve
     if os.path.isfile(abs_path):
-        return render_template('index.html')
+        return render_template(req_path)
 
     # Show directory contents
     files = os.listdir(abs_path)
-    return render_template('index.html', files=files)
+    return render_template(req_path, files=files)
+
+# 主畫面
+@app.route('/main/',defaults={'req_path': ''})
+@app.route('/main/<path:req_path>')
+def main(req_path):
+    BASE_DIR = 'server_v3\\templates'
+
+    print(req_path)
+
+    if not req_path:
+        req_path = 'main'
+
+    req_path = f"{req_path}.html"
+
+    abs_path = os.path.join(os.getcwd(),BASE_DIR)
+    abs_path = os.path.join(abs_path, req_path)
+
+    print(abs_path)
+
+    # Return 404 if path doesn't exist
+    if not os.path.exists(abs_path):
+        return abort(404)
+
+    # Check if path is a file and serve
+    if os.path.isfile(abs_path):
+        return render_template('main.html')
+
+    # Show directory contents
+    files = os.listdir(abs_path)
+    return render_template('main.html', files=files)
+
+
+# 價格面板畫面
+@app.route('/monitor/',defaults={'req_path': ''})
+@app.route('/monitor/<path:req_path>')
+def monitor(req_path):
+    BASE_DIR = 'server_v3\\templates'
+
+    print(req_path)
+
+    if not req_path:
+        req_path = 'monitor'
+
+    req_path = f"{req_path}.html"
+
+    abs_path = os.path.join(os.getcwd(),BASE_DIR)
+    abs_path = os.path.join(abs_path, req_path)
+
+    print(abs_path)
+
+    # Return 404 if path doesn't exist
+    if not os.path.exists(abs_path):
+        return abort(404)
+
+    # Check if path is a file and serve
+    if os.path.isfile(abs_path):
+        return render_template('monitor.html')
+
+    # Show directory contents
+    files = os.listdir(abs_path)
+    return render_template('monitor.html', files=files)
 
 @app.route('/.well-known/pki-validation/B87B968F8367A7B79753D5221B1BFDD0.txt')
 def identify():
@@ -58,10 +129,6 @@ def stockapp():
         lines = f.read()
         print(lines)
     return
-
-@app.route('/login', methods=["POST"])
-def login():
-    return "OK!"
 
 @app.route('/stockInfo', methods=['POST'])
 def stockInfo():
