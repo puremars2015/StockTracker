@@ -23,62 +23,49 @@
             /* 垂直置中 */
             align-items: center;
         }
+
         div.title {
-            text-align:center;
+            text-align: center;
             margin: 20px;
         }
+
         div.account {
             margin: 5px;
         }
+
         div.password {
             margin: 5px;
         }
+
         div.warnning-message {
             display: none;
-            text-align:center;
+            text-align: center;
             color: red;
         }
+
         div.control {
-            text-align:center;
+            text-align: center;
             margin: 30px 0px;
         }
     </style>
 </head>
 
 <body>
-
     <div class="base">
         <div class="primary">
             <div class="title">
-                <h1>價格追蹤系統</h1>
+                <h1>已經登出系統</h1>
             </div>
-            <div class="account">
-                <label>帳號：</label>
-                <input id="account" type="text" value="ADMIN">
-            </div>
-            <div class="password">
-                <label>密碼：</label>
-                <input id="password" type="password" value="12345678">
-            </div>
-            <div class="warnning-message">
-                <h3>登入帳號或密碼錯誤</h3>
-            </div>
-            <div class="control">
-                <input type="button" value="登入" style="width:30%" onclick="login()">
-                <input type="button" value="註冊" style="width:30%" onclick="goto('register')">
+            <div class="title">
+                <input type="button" value="回到登入頁" style="width:50%; height: 44px;" onclick="goto()">
             </div>
         </div>
     </div>
-
     <script>
-        function login() {
-            window.location.href = '/main';
-        }
-        function goto(v) {
-            window.location.href = v;
+        function goto() {
+            window.location.href = '/login';
         }
     </script>
-
 </body>
 
 </html>

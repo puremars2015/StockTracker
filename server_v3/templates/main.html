@@ -21,14 +21,6 @@
             height: 100%
         }
 
-        .side-bar {
-            /* border-style: dashed; */
-            padding-top: 30px;
-            padding-left: 10px;
-            padding-right: 30px;
-            width: 10%;
-        }
-
         .button-row {
             width: 100%;
             margin-bottom: 5px;
@@ -38,14 +30,37 @@
             width: 100%;
         }
 
+        .container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .side-bar {
+            /* border-style: dashed; */
+            padding-top: 30px;
+            padding-left: 10px;
+            padding-right: 30px;
+            width: 10%;
+            height: 100%;;
+        }
+
         .primary-container {
             width: 90%;
             height: 100%;
         }
 
-        .container {
-            width: 100%;
-            height: 100%;
+        @media screen and (max-width:768px) {
+            .monitor {
+                display: block;
+            }
+            .side-bar {
+                width: 80%;
+                height: 10%;
+            }
+            .primary-container {
+                width: 100%;
+                height: 90%;
+            }
         }
     </style>
 </head>
@@ -55,20 +70,29 @@
     <div class="monitor">
         <div class="side-bar">
             <div class="button-row">
-                <button class="link-button">價格追蹤功能面板</button>
+                <button class="link-button" onclick="changeContain('/main/monitor')">價格追蹤功能面板</button>
             </div>
             <div class="button-row">
-                <button class="link-button">設定新邀請碼</button>
+                <button class="link-button" onclick="changeContain('/main/generator')">設定新邀請碼</button>
             </div>
             <div class="button-row">
-                <button class="link-button">登出</button>
+                <button class="link-button" onclick="logout()">登出</button>
             </div>
         </div>
         <div class="primary-container">
-            <iframe id="primary-container" class="container" src="/monitor"></iframe>
+            <iframe id="primary-container" class="container" src="/main/monitor"></iframe>
         </div>
     </div>
 
+    <script>
+        function changeContain(v) {
+            let ele = document.getElementById('primary-container');
+            ele.src = `${window.location.origin}/${v}`;
+        }
+        function logout() {
+            window.location.href = "/logout";
+        }
+    </script>
 </body>
 
 </html>

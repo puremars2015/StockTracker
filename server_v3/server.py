@@ -79,12 +79,41 @@ def main(req_path):
 
     # Check if path is a file and serve
     if os.path.isfile(abs_path):
-        return render_template('main.html')
+        return render_template(req_path)
 
     # Show directory contents
     files = os.listdir(abs_path)
-    return render_template('main.html', files=files)
+    return render_template(req_path, files=files)
 
+# 主畫面
+@app.route('/generator/',defaults={'req_path': ''})
+@app.route('/generator/<path:req_path>')
+def generator(req_path):
+    BASE_DIR = 'server_v3\\templates'
+
+    print(req_path)
+
+    if not req_path:
+        req_path = 'generator'
+
+    req_path = f"{req_path}.html"
+
+    abs_path = os.path.join(os.getcwd(),BASE_DIR)
+    abs_path = os.path.join(abs_path, req_path)
+
+    print(abs_path)
+
+    # Return 404 if path doesn't exist
+    if not os.path.exists(abs_path):
+        return abort(404)
+
+    # Check if path is a file and serve
+    if os.path.isfile(abs_path):
+        return render_template(req_path)
+
+    # Show directory contents
+    files = os.listdir(abs_path)
+    return render_template(req_path, files=files)
 
 # 價格面板畫面
 @app.route('/monitor/',defaults={'req_path': ''})
@@ -110,11 +139,16 @@ def monitor(req_path):
 
     # Check if path is a file and serve
     if os.path.isfile(abs_path):
-        return render_template('monitor.html')
+        return render_template(req_path)
 
     # Show directory contents
     files = os.listdir(abs_path)
-    return render_template('monitor.html', files=files)
+    return render_template(req_path, files=files)
+
+@app.route('/logout')
+@app.route('/logout/')
+def logout():
+    return render_template("logout.html")
 
 @app.route('/.well-known/pki-validation/B87B968F8367A7B79753D5221B1BFDD0.txt')
 def identify():

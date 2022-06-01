@@ -53,17 +53,19 @@
             </div>
             <div class="account">
                 <label>邀請碼：</label>
-                <input type="text">
+                <input id="invitation-code" type="text" value="7533967">
             </div>
             <div class="control">
-                <input type="button" value="產生邀請碼" style="width:60%">
+                <input type="button" value="產生邀請碼" style="width:60%" onclick="generate()">
             </div>
         </div>
     </div>
 
     <script>
-        function goto(v) {
-            window.location.href = v;
+        function generate() {
+            let code = document.getElementById('invitation-code').value;
+            let msg = `產生邀請碼: ${code} 成功!`;
+            alert(msg);
         }
     </script>
 
