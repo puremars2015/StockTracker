@@ -29,7 +29,7 @@ def favicon():
 @app.route('/login/',defaults={'req_path': ''}, methods=['GET'])
 @app.route('/login/<path:req_path>', methods=['GET'])
 def login(req_path):
-    BASE_DIR = 'server_v3\\templates'
+    BASE_DIR = 'templates'
 
     print('req_path:',req_path)
 
@@ -59,7 +59,7 @@ def login(req_path):
 @app.route('/main/',defaults={'req_path': ''})
 @app.route('/main/<path:req_path>')
 def main(req_path):
-    BASE_DIR = 'server_v3\\templates'
+    BASE_DIR = 'templates'
 
     print(req_path)
 
@@ -89,7 +89,7 @@ def main(req_path):
 @app.route('/generator/',defaults={'req_path': ''})
 @app.route('/generator/<path:req_path>')
 def generator(req_path):
-    BASE_DIR = 'server_v3\\templates'
+    BASE_DIR = 'templates'
 
     print(req_path)
 
@@ -119,7 +119,7 @@ def generator(req_path):
 @app.route('/monitor/',defaults={'req_path': ''})
 @app.route('/monitor/<path:req_path>')
 def monitor(req_path):
-    BASE_DIR = 'server_v3\\templates'
+    BASE_DIR = 'templates'
 
     print(req_path)
 
