@@ -76,7 +76,7 @@ def hello_world():
 @app.route('/sample/',defaults={'req_path': ''})
 @app.route('/sample/<path:req_path>')
 def index(req_path):
-    BASE_DIR = '../stock_tracking_system/project'
+    BASE_DIR = '..\\stock_tracking_system\\project'
 
     print(req_path)
 

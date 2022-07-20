@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>價格追蹤系統</title>
+    <!-- 禁止縮放畫面 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        div.base {
+            display: flex;
+            /* 水平置中 */
+            justify-content: center;
+            /* 垂直置中 */
+            align-items: center;
+        }
+        div.title {
+            text-align:center;
+            margin: 20px;
+        }
+        div.account {
+            margin: 5px;
+        }
+        div.password {
+            margin: 5px;
+        }
+        div.warnning-message {
+            display: none;
+            text-align:center;
+            color: red;
+        }
+        div.control {
+            text-align:center;
+            margin: 30px 0px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="base">
+        <div class="primary">
+            <div class="title">
+                <h1>設定新邀請碼</h1>
+            </div>
+            <div class="account">
+                <label>邀請碼：</label>
+                <input id="invitation-code" type="text" value="7533967">
+            </div>
+            <div class="control">
+                <input type="button" value="產生邀請碼" style="width:60%" onclick="generate()">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generate() {
+            let code = document.getElementById('invitation-code').value;
+            let msg = `產生邀請碼: ${code} 成功!`;
+            alert(msg);
+        }
+    </script>
+
+</body>
+
+</html>
